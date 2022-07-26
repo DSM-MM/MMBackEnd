@@ -1,5 +1,6 @@
 package com.example.mmproject.domain.project.entity;
 
+import com.example.mmproject.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,11 +14,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table(name = "PROJECT")
-public class ProjectEntity {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(nullable = false)
     private String title;
