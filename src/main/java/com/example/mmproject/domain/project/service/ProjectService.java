@@ -14,6 +14,7 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
 
+    //프로젝트 공고글 작성
     @Transactional
     public Project create(ProjectRequest request){
         return projectRepository.save(Project.builder()
@@ -25,6 +26,7 @@ public class ProjectService {
                 .build());
     }
 
+    //프로젝트 공고글 수정
     @Transactional
     public Project update(ProjectRequest request, Long id){
         Project project = projectRepository.findById(id)
@@ -33,11 +35,13 @@ public class ProjectService {
         return project;
     }
 
+    //프로젝트 공고글 삭제
     @Transactional
     public void delete(Long id){
         projectRepository.deleteById(id);
     }
 
+    //프로젝트 공고글 자세히보기
     @Transactional
     public Project detail(Long id){
         return projectRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("id was wrong"));
