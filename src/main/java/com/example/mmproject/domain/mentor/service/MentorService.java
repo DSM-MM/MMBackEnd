@@ -15,6 +15,7 @@ public class MentorService {
 
     private final MentorRepository mentorRepository;
 
+    //멘토 등록
     @Transactional
     public Mentor registration(RegistrationRequest request){
         return mentorRepository.save(Mentor.builder()
@@ -27,16 +28,19 @@ public class MentorService {
                 .build());
     }
 
+    //멘토 등록 삭제
     @Transactional
     public void delete(Long id){
         mentorRepository.deleteById(id);
     }
 
+    //멘토 자세히보기
     @Transactional
     public Mentor detail(Long id){
         return mentorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("id was wrong"));
     }
 
+    //평점 시스템
     @Transactional
     public void rating(RatingRequest request, Long id){
         Mentor mentor = mentorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("id was wrong"));
