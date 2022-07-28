@@ -35,4 +35,10 @@ public class Message {
     @CreatedDate
     @Column
     private LocalDate date;
+
+    public Message(String sender, String message, Room room){
+        this.sender = sender;
+        this.message = message;
+        this.room = room;
+    }
 }

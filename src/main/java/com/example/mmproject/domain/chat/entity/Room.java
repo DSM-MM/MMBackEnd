@@ -22,8 +22,16 @@ public class Room {
     private Long id;
 
     @Column
-    private String name;
+    private String mentor;
+
+    @Column
+    private String mentee;
 
     @OneToMany(mappedBy = "Message", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Message> messages = new ArrayList<>();
+
+    public Room(String mentor, String mentee){
+        this.mentor = mentor;
+        this.mentee = mentee;
+    }
 }
