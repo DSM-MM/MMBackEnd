@@ -39,12 +39,5 @@ public class Project {
 
     @Column
     private String preference;
-
-    public void update(ProjectRequest request){
-        this.title = request.getTitle();
-        this.period = request.getPeriod();
-        this.content = request.getContent();
-        this.needed = request.getNeeded();
-        this.preference = request.getPreference();
-    }
+    
 }
