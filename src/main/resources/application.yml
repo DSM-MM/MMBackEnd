@@ -7,3 +7,6 @@ spring:
   jpa:
     generate-ddl: false
     show-sql: false
+  redis:
+      host: 127.0.0.1
+      port: 6379
