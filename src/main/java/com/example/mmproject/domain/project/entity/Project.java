@@ -38,5 +38,5 @@ public class Project {
 
     @Column
     private String preference;
-    
+
 }
