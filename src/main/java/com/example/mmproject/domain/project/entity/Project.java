@@ -1,6 +1,5 @@
 package com.example.mmproject.domain.project.entity;
 
-
 import com.example.mmproject.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
