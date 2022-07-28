@@ -1,6 +1,5 @@
 package com.example.mmproject.domain.project.entity;
 
-import com.example.mmproject.domain.project.controller.dto.ProjectRequest;
 import com.example.mmproject.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,11 +39,4 @@ public class Project {
     @Column
     private String preference;
 
-    public void update(ProjectRequest request){
-        this.title = request.getTitle();
-        this.period = request.getPeriod();
-        this.content = request.getContent();
-        this.needed = request.getNeeded();
-        this.preference = request.getPreference();
-    }
 }
