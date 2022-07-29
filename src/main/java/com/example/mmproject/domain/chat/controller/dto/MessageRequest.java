@@ -12,4 +12,5 @@ public class MessageRequest {
     private String sender;
     private String mentor;
     private String mentee;
+    private Long roomId;
 }
