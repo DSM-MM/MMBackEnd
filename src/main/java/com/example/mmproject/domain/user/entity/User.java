@@ -1,6 +1,7 @@
 package com.example.mmproject.domain.user.entity;
 
 import com.example.mmproject.domain.project.entity.Project;
+import com.example.mmproject.global.security.auth.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Builder
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,21 +40,33 @@ public class User {
     private String jobGroup; // 직군
 
     @Column
-    private String language; // 언어
+    private String language; // 언어x
 
     @Column
     private String githubLink; // 깃허브 링크
 
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role; // 권한
+
     // 비밀번호 빼고 수정
     public void setMyPage(String introduction, String jobGroup, String language, String githubLink){
-        introduction = this.introduction;
-        jobGroup = this.jobGroup;
-        language = this.language;
-        githubLink = this.githubLink;
+        if(introduction != null){
+            this.introduction = introduction;
+        }
+        if(jobGroup != null){
+            this.jobGroup = jobGroup;
+        }
+        if(language != null){
+            this.language = language;
+        }
+        if(githubLink != null){
+            this.githubLink = githubLink;
+        }
     }
 
     // 비밀번호 수정
     public void setPassword(String password){
-        password = this.password;
+        this.password = password;
     }
 }
