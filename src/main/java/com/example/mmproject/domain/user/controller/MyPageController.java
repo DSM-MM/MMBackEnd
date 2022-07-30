@@ -25,7 +25,7 @@ public class MyPageController {
     }
 
     // 마이페이지 비밀번호 수정
-    @PatchMapping("/{id}")
+    @PatchMapping("/password/{id}")
     public void setMyPassword(@PathVariable Long id, @RequestBody UserRequest request){
         myPageService.setPassword(id, request);
     }
