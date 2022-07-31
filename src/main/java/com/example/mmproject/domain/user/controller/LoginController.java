@@ -7,11 +7,13 @@ import com.example.mmproject.global.security.auth.enums.Role;
 import com.example.mmproject.global.security.jwt.JwtTokenProvider;
 import com.example.mmproject.global.security.jwt.dto.TokenDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class LoginController {
@@ -20,14 +22,16 @@ public class LoginController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/signup")
-    public Long signup(@RequestBody UserRequest dto){
-        return  userRepository.save(User.builder()
+    public void signup(@RequestBody UserRequest dto){
+        if(userRepository.existsByEmail(dto.getEmail())){
+            log.error("이미 가입한 Email 입니다.");
+        }else userRepository.save(User.builder()
                 .email(dto.getEmail())
                 .name(dto.getName())
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .introduction(dto.getIntroduction())
                 .jobGroup(dto.getJobGroup())
-                .role(Role.ROLE_USER).build()).getId();
+                .role(Role.ROLE_USER).build());
     }
 
 
