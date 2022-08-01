@@ -19,6 +19,6 @@ public class MessageController {
     @MessageMapping("/chat/message")
     public void send(@RequestBody MessageRequest request){
         Message message = chatService.saveMessage(request);
-        sendingOperations.convertAndSend("/sub/chat/room"+message.getRoom().getId(), message);
+        sendingOperations.convertAndSend("/topic/chat/room"+message.getRoom().getId(), message);
     }
 }
