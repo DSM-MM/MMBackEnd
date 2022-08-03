@@ -5,15 +5,28 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
-public class AuthDetails implements UserDetails {
+public class AuthDetails implements UserDetails, OAuth2User {
 
     private final User user;
+    private Map<String,Object> attributes;
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 
     //사용자가 가진 모든 권한 정보를 얻는다
     @Override
@@ -52,4 +65,5 @@ public class AuthDetails implements UserDetails {
     public boolean isEnabled() { // 계정 사용 가능 여부
         return true;
     }
+
 }
