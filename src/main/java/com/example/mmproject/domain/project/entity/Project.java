@@ -39,9 +39,6 @@ public class Project {
 
     @Column
     private String preference;
-<<<<<<< HEAD
-    
-=======
 
     public void update(ProjectRequest request){
         this.title = request.getTitle();
@@ -50,6 +47,5 @@ public class Project {
         this.needed = request.getNeeded();
         this.preference = request.getPreference();
     }
->>>>>>> 2cd34670162f9f0755ff45aa44146f6654748db0
 }
 
