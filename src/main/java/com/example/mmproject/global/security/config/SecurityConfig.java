@@ -2,6 +2,7 @@ package com.example.mmproject.global.security.config;
 
 import com.example.mmproject.global.security.filter.JwtAuthenticationFilter;
 import com.example.mmproject.global.security.jwt.JwtTokenProvider;
+import com.example.mmproject.global.security.oauth.Oauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -21,6 +21,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final Oauth2UserService oauth2UserService;
+    private final Oauth2SuccessHandler successHandler;
 
 
     @Override
@@ -41,19 +43,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
-
+// /oauth2/authorization/google
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .httpBasic().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션을 생성안함.
-                .and()
+                .csrf().disable()
+                .cors().disable()
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers("token/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .oauth2Login()
+                    .successHandler(successHandler)
+                    .userInfoEndpoint().userService(oauth2UserService);
+
+        http.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+
     }
 }
