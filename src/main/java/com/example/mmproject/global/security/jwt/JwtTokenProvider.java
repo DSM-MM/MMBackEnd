@@ -89,8 +89,8 @@ public class JwtTokenProvider {
         }
     }
 
-    // Request의 Header 에서 token값을 가져온다. "X-AUTH-TOKEN" :"TOKEN값"
-    public String resolveToken(HttpServletRequest request){return request.getHeader("X-AUTH-TOKEN");}
+    // Request의 Header 에서 token값을 가져온다. "ACCESS_TOKEN" :"TOKEN값"
+    public String resolveToken(HttpServletRequest request){return request.getHeader("ACCESS_TOKEN");}
 
     // 토큰의 유효성 + 만료일자 확인
     public boolean validateToken(String jwtToken){
