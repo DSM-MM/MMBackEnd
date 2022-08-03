@@ -35,9 +35,16 @@ public class Mentor {
     private String language;
 
     @Column
-    private String rating;
+    private double rating;
+
+    @Column
+    private int totalCount;
 
     @Column
     private String jobGroup;
 
+    public void rating(int totalCount, double rating){
+        this.totalCount = totalCount;
+        this.rating = rating;
+    }
 }

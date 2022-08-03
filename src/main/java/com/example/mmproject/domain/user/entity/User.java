@@ -1,6 +1,7 @@
 package com.example.mmproject.domain.user.entity;
 
 import com.example.mmproject.domain.project.entity.Project;
+import com.example.mmproject.global.security.auth.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Builder
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,20 +25,49 @@ public class User {
     private List<Project> projects;
 
     @Column
-    private String name;
+    private String name; // 닉넴
 
     @Column
-    private String email;
+    private String email; // 이메일
 
     @Column
-    private String password;
+    private String password; // 비밀번호
 
     @Column
-    private String introduction;
+    private String introduction; // 한줄소개
 
     @Column
-    private String jobGroup;
+    private String jobGroup; // 직군
 
     @Column
-    private String githubLink;
+    private String language; // 언어x
+
+    @Column
+    private String githubLink; // 깃허브 링크
+
+    @Column
+    private String provider; // oauth 로 로그인한 사람 ex) google
+
+    @Column
+    private String providerId; // 구글 에서 사용하는 아이디 ex) sub = 116233748764850992230
+
+    // 비밀번호 빼고 수정
+    public void setMyPage(String name,String introduction, String jobGroup, String language, String githubLink){
+        if(introduction != null){
+            this.introduction = introduction;
+        }
+        if(jobGroup != null){
+            this.jobGroup = jobGroup;
+        }
+        if(language != null){
+            this.language = language;
+        }
+        if(githubLink != null){
+            this.githubLink = githubLink;
+        }
+        if(name != null){
+            this.name = name;
+        }
+    }
+    
 }
