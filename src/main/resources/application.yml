@@ -4,21 +4,3 @@ spring:
     url: ${MYSQL_PASSWORD}
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
-  jpa:
-    generate-ddl: false
-    show-sql: false
-  redis:
-      host: 127.0.0.1
-      port: 6379
-
-# Security OAuth
-security:
-  oauth2.client:
-    registration:
-      google:
-        clientId: '{구글 client-id}'
-        clientSecret: '{구글 client-secret}'
-        scope:
-          - email
-          - profile
-

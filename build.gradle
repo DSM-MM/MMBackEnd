@@ -36,7 +36,6 @@ dependencies {
 
     //db
     implementation 'mysql:mysql-connector-java'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
 
     //lombok
