@@ -1,6 +1,7 @@
 package com.example.mmproject.domain.user.entity;
 
 import com.example.mmproject.domain.project.entity.Project;
+import com.example.mmproject.global.security.auth.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -68,9 +69,5 @@ public class User {
             this.name = name;
         }
     }
-
-    // 비밀번호 수정
-    public void setPassword(String password){
-        this.password = password;
-    }
+    
 }

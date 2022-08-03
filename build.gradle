@@ -36,8 +36,6 @@ dependencies {
 
     //db
     implementation 'mysql:mysql-connector-java'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-//    runtimeOnly 'com.h2database:h2'
 
     //lombok
     compileOnly 'org.projectlombok:lombok'
@@ -50,7 +48,7 @@ dependencies {
     //oauth
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-    
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
