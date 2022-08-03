@@ -51,9 +51,23 @@ public class User {
     @Column
     private String providerId; // 구글 에서 사용하는 아이디 ex) sub = 116233748764850992230
 
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role; // 권한
-
-
+    // 비밀번호 빼고 수정
+    public void setMyPage(String name,String introduction, String jobGroup, String language, String githubLink){
+        if(introduction != null){
+            this.introduction = introduction;
+        }
+        if(jobGroup != null){
+            this.jobGroup = jobGroup;
+        }
+        if(language != null){
+            this.language = language;
+        }
+        if(githubLink != null){
+            this.githubLink = githubLink;
+        }
+        if(name != null){
+            this.name = name;
+        }
+    }
+    
 }
