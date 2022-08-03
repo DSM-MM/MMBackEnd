@@ -1,7 +1,6 @@
 package com.example.mmproject.domain.user.entity;
 
 import com.example.mmproject.domain.project.entity.Project;
-import com.example.mmproject.global.security.auth.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -45,12 +44,14 @@ public class User {
     @Column
     private String githubLink; // 깃허브 링크
 
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role; // 권한
+    @Column
+    private String provider; // oauth 로 로그인한 사람 ex) google
+
+    @Column
+    private String providerId; // 구글 에서 사용하는 아이디 ex) sub = 116233748764850992230
 
     // 비밀번호 빼고 수정
-    public void setMyPage(String introduction, String jobGroup, String language, String githubLink){
+    public void setMyPage(String name,String introduction, String jobGroup, String language, String githubLink){
         if(introduction != null){
             this.introduction = introduction;
         }
@@ -62,6 +63,9 @@ public class User {
         }
         if(githubLink != null){
             this.githubLink = githubLink;
+        }
+        if(name != null){
+            this.name = name;
         }
     }
 
