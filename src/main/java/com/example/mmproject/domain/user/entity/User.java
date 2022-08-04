@@ -51,6 +51,10 @@ public class User {
     @Column
     private String providerId; // 구글 에서 사용하는 아이디 ex) sub = 116233748764850992230
 
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role; // 권한
+
     // 비밀번호 빼고 수정
     public void setMyPage(String name,String introduction, String jobGroup, String language, String githubLink){
         if(introduction != null){
@@ -68,6 +72,11 @@ public class User {
         if(name != null){
             this.name = name;
         }
+    }
+
+    // 비밀번호 수정
+    public void setPassword(String password){
+        this.password = password;
     }
     
 }
