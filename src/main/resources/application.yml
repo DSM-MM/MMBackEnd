@@ -27,3 +27,14 @@ spring:
               - email
               - profile
 
+    cloud:
+        aws:
+          credentials:
+            accessKey: AKIAY2IWECRB3QV57OFP
+            secretKey: 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
+          s3:
+            bucket: vegan-bucket
+          region:
+            static: ap-northeast-2
+          stack:
+            auto: false
