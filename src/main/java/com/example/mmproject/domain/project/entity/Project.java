@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -39,6 +40,9 @@ public class Project {
 
     @Column
     private String preference;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE)
+    private List<Image> images;
 
     public void update(ProjectRequest request){
         this.title = request.getTitle();
