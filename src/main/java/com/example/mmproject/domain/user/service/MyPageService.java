@@ -17,21 +17,27 @@ public class MyPageService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    // 자신의 계정 삭제
+    public void leaveUser(String email){
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("USER_IS_NOT_FOUND"));
+        userRepository.delete(user);
+    }
+
     // 마이페이지 보기
-    public User getMyPage(Long id){
-        return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("USER_ID_NOT_FOUND"));
+    public User getMyPage(String email){
+        return userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("USER_ID_NOT_FOUND"));
     }
 
     // 마이페이지 수정
-    public void setMyPage(Long id, UserRequest userRequest){
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("USER_ID_NOT_FOUND"));
+    public void setMyPage(String email, UserRequest userRequest){
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("USER_ID_NOT_FOUND"));
         user.setMyPage(userRequest.getName(),userRequest.getIntroduction(), userRequest.getJobGroup(), userRequest.getLanguage(), userRequest.getGithubLink());
         userRepository.save(user);
     }
 
     // 이전비밀번호 검사, 새로운 비밀번호 검사
-    public void setPassword(Long id, UserRequest userRequest) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("USER_ID_NOT_FOUND"));
+    public void setPassword(String email, UserRequest userRequest) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("USER_ID_NOT_FOUND"));
 
         // 구글 사용자인지 아닌지
         if(user.getProvider() == null) {
