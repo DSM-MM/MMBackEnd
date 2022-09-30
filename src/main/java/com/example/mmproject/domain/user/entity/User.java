@@ -49,7 +49,7 @@ public class User {
     private String provider; // oauth 로 로그인한 사람 ex) google
 
     @Column
-    private String providerId; // 구글 에서 사용하는 아이디 ex) sub = 116233748764850992230
+    private String picture;
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -72,6 +72,13 @@ public class User {
         if(name != null){
             this.name = name;
         }
+    }
+
+    public User update(String name, String picture) {
+        this.name = name;
+        this.picture = picture;
+
+        return this;
     }
 
     // 비밀번호 수정
