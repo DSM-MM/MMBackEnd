@@ -5,6 +5,7 @@ import com.example.mmproject.domain.project.entity.Project;
 import com.example.mmproject.domain.project.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,5 +31,10 @@ public class ProjectController {
     @GetMapping("/project/{id}")
     public Project detail(@PathVariable Long id){
         return projectService.detail(id);
+    }
+
+    @PostMapping("/project/upload")
+    public String upload(MultipartFile multipartFile) throws Exception{
+        return projectService.upload(multipartFile);
     }
 }
