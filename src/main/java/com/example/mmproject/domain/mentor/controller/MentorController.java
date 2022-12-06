@@ -7,6 +7,8 @@ import com.example.mmproject.domain.mentor.service.MentorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class MentorController {
@@ -31,5 +33,15 @@ public class MentorController {
     @PostMapping("/rating/{id}")
     public void rating(@PathVariable Long id, @RequestBody RatingRequest request){
         mentorService.rating(request, id);
+    }
+
+    @GetMapping("/mentor/list")
+    public List<Mentor> mentorList(){
+        return mentorService.mentorList();
+    }
+
+    @GetMapping("/mentor/top3")
+    public List<Mentor> mentorTop3(){
+        return mentorService.mentorTop3();
     }
 }

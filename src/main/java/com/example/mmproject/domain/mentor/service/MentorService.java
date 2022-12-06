@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +48,16 @@ public class MentorService {
         double ratingAvg = (mentor.getRating() * (mentor.getTotalCount()) + request.getRating()) / (mentor.getTotalCount() + 1);
         mentor.rating(mentor.getTotalCount() + 1, ratingAvg);
         mentorRepository.save(mentor);
+    }
+
+    //멘토 리스트
+    @Transactional
+    public List<Mentor> mentorList(){
+        return mentorRepository.findAll();
+    }
+
+    @Transactional
+    public List<Mentor> mentorTop3(){
+        return mentorRepository.findAllByOrderByRatingDesc();
     }
 }

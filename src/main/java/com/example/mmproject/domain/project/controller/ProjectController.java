@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class ProjectController {
@@ -36,5 +38,10 @@ public class ProjectController {
     @PostMapping("/project/upload")
     public String upload(MultipartFile multipartFile) throws Exception{
         return projectService.upload(multipartFile);
+    }
+
+    @GetMapping("/project/list")
+    public List<Project> projectList(){
+        return projectService.projectList();
     }
 }
