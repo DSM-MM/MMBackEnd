@@ -1,5 +1,6 @@
 package com.example.mmproject.domain.project.controller;
 
+import com.example.mmproject.domain.project.controller.dto.ProjectDto;
 import com.example.mmproject.domain.project.controller.dto.ProjectRequest;
 import com.example.mmproject.domain.project.entity.Project;
 import com.example.mmproject.domain.project.service.ProjectService;
@@ -16,12 +17,12 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @PostMapping("/project")
-    public Project create(@RequestBody ProjectRequest request){
+    public ProjectDto create(@RequestBody ProjectRequest request){
         return projectService.create(request);
     }
 
     @PatchMapping("/project/{id}")
-    public Project update(@PathVariable Long id, @RequestBody ProjectRequest request){
+    public ProjectDto update(@PathVariable Long id, @RequestBody ProjectRequest request){
         return projectService.update(request, id);
     }
 
@@ -31,7 +32,7 @@ public class ProjectController {
     }
 
     @GetMapping("/project/{id}")
-    public Project detail(@PathVariable Long id){
+    public ProjectDto detail(@PathVariable Long id){
         return projectService.detail(id);
     }
 
@@ -41,7 +42,7 @@ public class ProjectController {
     }
 
     @GetMapping("/project/list")
-    public List<Project> projectList(){
+    public List<ProjectDto> projectList(){
         return projectService.projectList();
     }
 }

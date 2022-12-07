@@ -1,5 +1,6 @@
 package com.example.mmproject.domain.mentor.controller;
 
+import com.example.mmproject.domain.mentor.controller.dto.MentorDto;
 import com.example.mmproject.domain.mentor.controller.dto.RatingRequest;
 import com.example.mmproject.domain.mentor.controller.dto.RegistrationRequest;
 import com.example.mmproject.domain.mentor.entity.Mentor;
@@ -16,7 +17,7 @@ public class MentorController {
     private final MentorService mentorService;
 
     @PostMapping("/mentor")
-    public Mentor registration(@RequestBody RegistrationRequest request){
+    public MentorDto registration(@RequestBody RegistrationRequest request){
         return mentorService.registration(request);
     }
 
@@ -26,7 +27,7 @@ public class MentorController {
     }
 
     @GetMapping("/mentor/{id}")
-    public Mentor detail(@PathVariable Long id){
+    public MentorDto detail(@PathVariable Long id){
         return mentorService.detail(id);
     }
 
@@ -36,12 +37,12 @@ public class MentorController {
     }
 
     @GetMapping("/mentor/list")
-    public List<Mentor> mentorList(){
+    public List<MentorDto> mentorList(){
         return mentorService.mentorList();
     }
 
     @GetMapping("/mentor/top3")
-    public List<Mentor> mentorTop3(){
+    public List<MentorDto> mentorTop3(){
         return mentorService.mentorTop3();
     }
 }
